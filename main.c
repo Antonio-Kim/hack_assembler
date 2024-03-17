@@ -74,6 +74,12 @@ int main(int args, char** argv) {
 			else break;
 		}
 
+		int i;
+		for (i = start; i <= end; i++) {
+			line[i - start] = line[i];
+		}
+		line[i - start] = '\0'; // Null-terminate the shifted string
+
 		for (size_t j = len; j >= 0; j--) {
 			if(isspace(line[j])) end--;
 			else break;
@@ -86,7 +92,7 @@ int main(int args, char** argv) {
 		output_line[copy_length] = '\0';
 
 		if (empty_line || (output_line[0] && output_line[1] == '/')) continue;
-		else printf("%s", output_line);
+		else fputs(output_line, output_file); 
 	}
 	
 	free(output_filename);
